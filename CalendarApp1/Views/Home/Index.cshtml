@@ -5,5 +5,10 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    @Html.RenderPartialAsync("Partials/_CalendarPartial.cshtml")
+    <div class="center-div">
+        @{await Html.RenderPartialAsync(
+            "Partials/_CalendarPartial.cshtml", 
+            new CalendarModel(rows: ["1", "2", "3", "4", "5"])
+        );}
+    </div>
 </div>
