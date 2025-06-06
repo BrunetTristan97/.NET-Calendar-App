@@ -4,6 +4,15 @@
 @model CalendarModel
 @{
     <div class="calendar">
+        <div class="month-selector">
+            <button class="btn" id="btnPrev" onclick="() => getPreviousMonth(@Model.SelectedMonth)">
+                <i class="bi bi-arrow-left" />
+            </button>
+            <span>@Model.SelectedMonthName</span>
+            <button class="btn" id="btnNext" onclick="() => getNextMonth(@Model.SelectedMonth)">
+                <i class="bi bi-arrow-right" />
+            </button>
+        </div>
         <div class="calendar-rows">
             <div class="board-rows">
                 @for (int i = 0; i < Model.Rows.Length; i++)

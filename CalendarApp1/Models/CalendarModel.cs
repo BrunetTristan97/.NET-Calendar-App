@@ -2,14 +2,22 @@
 {
     public class CalendarModel
     {
-        private string[] _rows = [];
+        private readonly string[] _month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+        private int[] _rows = [];
 
-        public string[] Rows { get { return this._rows; } set { this._rows = value; } }
+        private int _selectedMonth;
+        
+        public int[] Rows { get { return this._rows; } set { this._rows = value; } }
 
-        public CalendarModel(string[] rows)
+        public int SelectedMonth { get { return this._selectedMonth; } set { this._selectedMonth = value; } }
+
+        public string SelectedMonthName { get { return this._month_names[this.SelectedMonth]; } }
+
+        public CalendarModel(int[] rows, DateTime selectedMonth)
         {
             this._rows = rows;
+            this._selectedMonth = selectedMonth.Month;
         }
     }
 }

@@ -100,10 +100,10 @@ ul {
 }
 
 
-.calendar-rows.in.visible {
+/*.calendar-rows.in.visible {
     animation: translateY(0);
     opacity: 1;
-}
+}*/
 
 /*@keyframes calendar-roll-over {
   0% {
@@ -160,5 +160,5 @@ ul {
     }
 
         .month-selector button i {
-            font-size: 28px;
+/*            font-size: 28px;*/
         }
