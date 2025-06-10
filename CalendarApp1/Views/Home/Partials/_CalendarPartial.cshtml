@@ -3,25 +3,47 @@
 *@
 @model CalendarModel
 @{
-    <div class="calendar">
-        <div class="month-selector">
-            <button class="btn" id="btnPrev" onclick="() => getPreviousMonth(@Model.SelectedMonth)">
-                <i class="bi bi-arrow-left" />
-            </button>
-            <span>@Model.SelectedMonthName</span>
-            <button class="btn" id="btnNext" onclick="() => getNextMonth(@Model.SelectedMonth)">
-                <i class="bi bi-arrow-right" />
-            </button>
-        </div>
-        <div class="calendar-rows">
-            <div class="board-rows">
-                @for (int i = 0; i < Model.Rows.Length; i++)
-                {
-                    <div class="square">
-                        <span>@Html.DisplayFor(model => model.Rows[i])</span>
-                    </div>
-                }
+        <div class="calendar">
+            <div class="month-selector">
+                <button class="btn" id="btnPrev"">
+                    Previous
+                </button>
+                <span>@Model.SelectedMonthName</span>
+                <button class="btn" id="btnNext" onclick="() => getNextMonth(@Model.SelectedMonth)">
+                    Next
+                </button>
+            </div>
+            <div class="calendar-rows">
+                <div class="board-rows">
+                    @for (int i = 0; i < Model.Rows.Length; i++)
+                    {
+                        <div class="square">
+                            <span>@Html.DisplayFor(model => model.Rows[i])</span>
+                        </div>
+                    }
+                </div>
             </div>
         </div>
-    </div>
 }
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $("#btnPrev").click(function (e, selectedMonth) {
+        e.preventDefault();
+        updateMonth(@Model.SelectedMonth - 1)
+    });
+
+    $("#btnNext").click(function (e, selectedMonth) {
+        e.preventDefault();
+        updateMonth(@Model.SelectedMonth + 1)
+    });
+
+    function updateMonth(month) {
+        $.ajax({
+            method: "GET",
+            URL: '@Url.Action("GetMonth", "Calendar")',
+            data: { model: '@Model' }
+        }).done(function (data) {
+            alert(data);
+        });
+    }
+</script>
