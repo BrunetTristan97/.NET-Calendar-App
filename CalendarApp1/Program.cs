@@ -24,8 +24,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-//app.MapControllerRoute(
-//    name: "calendar",
-//    pattern: "{controller=Calendar}/{action=Index}");
+app.MapControllerRoute(
+    name: "calendar-month",
+    pattern: "{controller=Calendar}/{action=GetMonth}/{model?}");
 
 app.Run();

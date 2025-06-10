@@ -6,18 +6,20 @@
 
         private int[] _rows = [];
 
-        private int _selectedMonth;
+        private DateTime _selectedDate;
         
-        public int[] Rows { get { return this._rows; } set { this._rows = value; } }
+        public int[] Rows { 
+            get {
+                return Enumerable.Range(1, DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month)).ToArray();
+            } 
+        }
 
-        public int SelectedMonth { get { return this._selectedMonth; } set { this._selectedMonth = value; } }
+        public DateTime SelectedDate { get { return this._selectedDate; } set { this._selectedDate = value; } }
 
-        public string SelectedMonthName { get { return this._month_names[this.SelectedMonth]; } }
+        public string SelectedMonthName { get { return this._month_names[this.SelectedDate.Month]; } }
 
-        public CalendarModel(int[] rows, DateTime selectedMonth)
-        {
-            this._rows = rows;
-            this._selectedMonth = selectedMonth.Month;
+        public CalendarModel() { 
+            this.SelectedDate = DateTime.UtcNow; 
         }
     }
 }

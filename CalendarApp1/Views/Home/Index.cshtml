@@ -5,5 +5,17 @@
 
 
 <div class="center-div">
-    <partial name="Partials/_CalendarPartial.cshtml" model="new CalendarModel(rows: [1 ,2, 3, 4, 5], DateTime.UtcNow)" />
+    <form asp-route="calendar-month">
+        <div class="month-selector">
+            <button class="btn" id="btnPrev">
+                Previous
+            </button>
+            <span id="monthName"></span>
+            <button class="btn" id="btnNext">
+                Next
+            </button>
+        </div>
+        <partial name="Partials/_CalendarPartial.cshtml" model="new CalendarModel()" />
+    </form>
+    
 </div>
