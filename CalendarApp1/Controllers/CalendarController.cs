@@ -6,14 +6,23 @@ namespace CalendarApp1.Controllers
     public class CalendarController : Controller
     {
         [HttpGet]
-        public ActionResult GetMonth(CalendarModel model, bool next)
+        public IActionResult GetMonth(string datetime, string direction)
         {
-            // Get event data from the selected month
-            // Update selected month
-            model.SelectedDate = model.SelectedDate.AddMonths(next ? 1 : -1);
+            if (direction != "next" && direction != "previous")
+            {
+                return BadRequest("Invalid direction parameter. Use 'next' or 'prev'.");
+            }
 
-            // return month data
-            return PartialView(model);
+            if (string.IsNullOrEmpty(datetime))
+            {
+                return BadRequest("datetime parameter is required.");
+            }
+
+            CalendarModel model = new CalendarModel();
+            DateTime dateTime = DateTime.Parse(datetime).ToUniversalTime();
+            model.SelectedDate = dateTime.AddMonths(direction == "next" ? 1 : -1); // Normalize to the first of the month
+
+            return PartialView("Views/Home/Partials/_CalendarPartial.cshtml", model);
         }
     }
 }

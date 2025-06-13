@@ -2,20 +2,9 @@
     ViewData["Title"] = "Home Page";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-
-
+@model IndexModel
 <div class="center-div">
-    <form asp-route="calendar-month">
-        <div class="month-selector">
-            <button class="btn" id="btnPrev">
-                Previous
-            </button>
-            <span id="monthName"></span>
-            <button class="btn" id="btnNext">
-                Next
-            </button>
-        </div>
-        <partial name="Partials/_CalendarPartial.cshtml" model="new CalendarModel()" />
+    <form id="calendar-form">
+        <partial name="Partials/_CalendarPartial.cshtml" model = "@Model.Calendar"/>
     </form>
-    
 </div>

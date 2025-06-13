@@ -16,7 +16,7 @@
 
         public DateTime SelectedDate { get { return this._selectedDate; } set { this._selectedDate = value; } }
 
-        public string SelectedMonthName { get { return this._month_names[this.SelectedDate.Month]; } }
+        public string SelectedMonthName { get { return this._month_names[this.SelectedDate.Month - 1]; } }
 
         public CalendarModel() { 
             this.SelectedDate = DateTime.UtcNow; 
