@@ -13,16 +13,9 @@
 
                 int[] days = Enumerable.Range(1, DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month)).ToArray();
 
-                int[] array1d = new int[firstDayOfWeek].Concat(days).Concat(new int[6 - lastDayOfWeek]).ToArray();
+                List<int> calendarMonth = new int[firstDayOfWeek].Concat(days).Concat(new int[6 - lastDayOfWeek]).ToList();
 
-                List<int[]> calendarMonth = new List<int[]>();
-
-                for (int i = 0; i < array1d.Length; i+=7)
-                {
-                    int[] segment = new ArraySegment<int>(array1d, i, 7).ToArray();
-                    calendarMonth.Add(segment);
-                }
-                return calendarMonth.ToArray();
+                return calendarMonth.Chunk(7).ToArray();
             } 
         }
 
