@@ -4,13 +4,25 @@
     {
         private readonly string[] _month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-        private int[] _rows = [];
-
         private DateTime _selectedDate;
         
-        public int[] Rows { 
+        public int[][] Rows { 
             get {
-                return Enumerable.Range(1, DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month)).ToArray();
+                int firstDayOfWeek = (int)SelectedDate.DayOfWeek;
+                int lastDayOfWeek = (int)new DateTime(SelectedDate.Year, SelectedDate.Month, DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month)).DayOfWeek;
+
+                int[] days = Enumerable.Range(1, DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month)).ToArray();
+
+                int[] array1d = new int[firstDayOfWeek].Concat(days).Concat(new int[6 - lastDayOfWeek]).ToArray();
+
+                List<int[]> calendarMonth = new List<int[]>();
+
+                for (int i = 0; i < array1d.Length; i+=7)
+                {
+                    int[] segment = new ArraySegment<int>(array1d, i, 7).ToArray();
+                    calendarMonth.Add(segment);
+                }
+                return calendarMonth.ToArray();
             } 
         }
 
@@ -18,8 +30,8 @@
 
         public string SelectedMonthName { get { return this._month_names[this.SelectedDate.Month - 1]; } }
 
-        public CalendarModel() { 
-            this.SelectedDate = DateTime.UtcNow; 
+        public CalendarModel() {
+            this.SelectedDate = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
         }
     }
 }

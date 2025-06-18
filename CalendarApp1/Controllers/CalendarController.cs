@@ -10,7 +10,7 @@ namespace CalendarApp1.Controllers
         {
             if (direction != "next" && direction != "previous")
             {
-                return BadRequest("Invalid direction parameter. Use 'next' or 'prev'.");
+                return BadRequest("Invalid direction parameter. Use 'next' or 'previous'.");
             }
 
             if (string.IsNullOrEmpty(datetime))
@@ -20,7 +20,7 @@ namespace CalendarApp1.Controllers
 
             CalendarModel model = new CalendarModel();
             DateTime dateTime = DateTime.Parse(datetime).ToUniversalTime();
-            model.SelectedDate = dateTime.AddMonths(direction == "next" ? 1 : -1); // Normalize to the first of the month
+            model.SelectedDate = dateTime.AddMonths(direction == "next" ? 1 : -1);
 
             return PartialView("Views/Home/Partials/_CalendarPartial.cshtml", model);
         }

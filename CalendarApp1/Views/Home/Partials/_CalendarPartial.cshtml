@@ -7,18 +7,22 @@
         <input type="hidden" id="_datetime" value="@Model.SelectedDate.ToString("yyyy-MM-dd")" />
         <div class="month-selector">
             <input type="button" class="btn" id="btnPrev" value="Previous" />
-            <span id="monthName">@Model.SelectedMonthName</span>
+            <span id="monthName">@Model.SelectedMonthName @Model.SelectedDate.Year</span>
             <input type="button" class="btn" id="btnNext" value="Next" />
         </div>
         <div class="calendar-rows">
-            <div class="board-rows">
-                @for (int i = 0; i < Model.Rows.Length; i++)
-                {
-                    <div class="square">
-                        <span>@Html.DisplayFor(model => model.Rows[i])</span>
-                    </div>
-                }
-            </div>
+            @foreach(int[] row in Model.Rows)
+            {
+                <div class="board-row">
+                    @for (int i = 0; i < row.Length; i++)
+                    {
+                        <div class="square">
+                            <span>@(row[i] == 0 ? "" : row[i].ToString())</span>
+                        </div>
+                    }
+                </div>
+            }
+
         </div>
     </div>
 }
