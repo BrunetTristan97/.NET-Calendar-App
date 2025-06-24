@@ -7,4 +7,6 @@
     <form id="calendar-form">
         <partial name="Partials/_CalendarPartial.cshtml" model = "@Model.Calendar"/>
     </form>
+
+    <partial name="Partials/_EventPartial.cshtml" model="@Model.Calendar.Events" />
 </div>

@@ -5,7 +5,8 @@
         private readonly string[] _month_names = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
         private DateTime _selectedDate;
-        
+
+        //private List<EventModel> _events = new List<EventModel>();
         public int[][] Rows { 
             get {
                 int firstDayOfWeek = (int)SelectedDate.DayOfWeek;
@@ -23,8 +24,13 @@
 
         public string SelectedMonthName { get { return this._month_names[this.SelectedDate.Month - 1]; } }
 
+        public List<EventModel> Events { get; set; }
+
         public CalendarModel() {
             this.SelectedDate = new DateTime(DateTime.UtcNow.Year, DateTime.UtcNow.Month, 1);
+
+            // TODO: Call service function to list all events for the selected month
+            this.Events = new List<EventModel>();
         }
     }
 }

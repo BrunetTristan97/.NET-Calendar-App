@@ -1,0 +1,24 @@
+﻿.events {
+    display: flex;
+    flex-direction: row;
+}
+
+.event-item {
+    padding: 0;
+    margin: 0;
+}
+
+.events .right-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.events .left-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+}
